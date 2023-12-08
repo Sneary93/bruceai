@@ -34,7 +34,7 @@ def extract_mood(user_input):
         st.error("Error in OpenAI API call for mood extraction: " + str(e))
         return 'neutral'  # Default mood if there's an error
 
-# Function to get Spotify song suggestion
+# Function to get Spotify song suggestions
 def get_spotify_song(mood):
     spotify_client_id = spotify_client
     spotify_client_secret = spotify_secret
@@ -51,11 +51,11 @@ def get_spotify_song(mood):
         st.markdown(f"<iframe src='https://open.spotify.com/embed/track/{track['id']}' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>", unsafe_allow_html=True)
 
         # Add like and dislike buttons
-        if st.button("Like"):
+        # Add heart (like) and thumbs-down (dislike) buttons
+        if st.button("❤️ Like"):
             st.write(f"You liked the song: {track_name}")
-        if st.button("Dislike"):
+        if st.button("👎 Dislike"):
             st.write(f"You disliked the song: {track_name}")
-
     else:
         st.write("No song found for the given mood")
 
@@ -86,10 +86,11 @@ def generate_new_song(user_input):
         scipy.io.wavfile.write("musicgen_out.wav", rate=music["sampling_rate"], data=music["audio"])
         st.audio("musicgen_out.wav", format='audio/wav')
 
-        # Add like and dislike buttons
-        if st.button("Like"):
+        # Add like and dislike button
+        # Add heart (like) and thumbs-down (dislike) buttons
+        if st.button("❤️ Like"):
             st.write("You liked the generated song!")
-        if st.button("Dislike"):
+        if st.button("👎 Dislike"):
             st.write("You disliked the generated song!")
 
     except Exception as e:
