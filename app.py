@@ -49,6 +49,13 @@ def get_spotify_song(mood):
         track_name = track['name']
         st.write(f"Suggested Song: [{track_name}]({track_url})")
         st.markdown(f"<iframe src='https://open.spotify.com/embed/track/{track['id']}' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>", unsafe_allow_html=True)
+
+        # Add like and dislike buttons
+        if st.button("Like"):
+            st.write(f"You liked the song: {track_name}")
+        if st.button("Dislike"):
+            st.write(f"You disliked the song: {track_name}")
+
     else:
         st.write("No song found for the given mood")
 
@@ -62,7 +69,7 @@ def generate_new_song(user_input):
             prompt=(
                 "Generate a text based on what this person's activity shows. "
                 "If it has a negative implication, suggest a positive statement "
-                "to help and encourage them to recover from the negative situation.\n"
+                "to help and encourage them to recover from the negative situation"
                 f"Response: {user_input}"
             ),
             max_tokens=50
@@ -78,6 +85,13 @@ def generate_new_song(user_input):
         music = synthesiser(result_text, forward_params={"do_sample": True, "max_length": 100, "min_length": 50})
         scipy.io.wavfile.write("musicgen_out.wav", rate=music["sampling_rate"], data=music["audio"])
         st.audio("musicgen_out.wav", format='audio/wav')
+
+        # Add like and dislike buttons
+        if st.button("Like"):
+            st.write("You liked the generated song!")
+        if st.button("Dislike"):
+            st.write("You disliked the generated song!")
+
     except Exception as e:
         st.error("Error in audio generation: " + str(e))
 
