@@ -50,6 +50,7 @@ def get_spotify_song(mood):
         st.write(f"Suggested Song: [{track_name}]({track_url})")
         st.markdown(f"<iframe src='https://open.spotify.com/embed/track/{track['id']}' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>", unsafe_allow_html=True)
 
+        # Steph added feature
         # Add like and dislike buttons
         # Add heart (like) and thumbs-down (dislike) buttons
         if st.button("❤️ Like"):
@@ -86,6 +87,7 @@ def generate_new_song(user_input):
         scipy.io.wavfile.write("musicgen_out.wav", rate=music["sampling_rate"], data=music["audio"])
         st.audio("musicgen_out.wav", format='audio/wav')
 
+        # Steph added feature
         # Add like and dislike button
         # Add heart (like) and thumbs-down (dislike) buttons
         if st.button("❤️ Like"):
