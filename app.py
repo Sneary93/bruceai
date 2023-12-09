@@ -7,7 +7,7 @@ import configparser
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-open_AI_key = os.environ.get('OPENAI_API_KEY')
+open_AI_key = os.environ.get('Bruce_Key')
 spotify_client = os.environ.get('spotify_client')
 spotify_secret = os.environ.get('spotify_secret')
 
